@@ -1,0 +1,105 @@
+:root {
+  --bg: #11111b;
+  --surface: #1e1e2e;
+  --surface2: #313244;
+  --text: #cdd6f4;
+  --subtext: #a6adc8;
+  --blue: #89b4fa;
+  --green: #a6e3a1;
+  --red: #f38ba8;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+}
+
+.navbar {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Cards de ação */
+.card-acao {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s;
+}
+
+.card-acao:hover {
+  border-color: var(--blue);
+}
+
+.ticker-badge {
+  display: inline-block;
+  background: var(--surface2);
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 2px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.nome-acao {
+  color: var(--subtext);
+  font-size: 0.85rem;
+}
+
+.preco-atual {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.variacao {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.positivo { color: var(--green); }
+.negativo { color: var(--red); }
+
+.divider {
+  border-color: var(--border);
+  margin: 12px 0;
+}
+
+.metric-label {
+  color: var(--subtext);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.metric-value {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* Gráficos */
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.chart-card .plotly-graph-div {
+  width: 100% !important;
+}
+
+footer {
+  color: var(--subtext);
+  border-top: 1px solid var(--border);
+}

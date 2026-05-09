@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Cards de resumo -->
+<div class="row g-3 mb-4">
+  {% for acao in resumo %}
+  <div class="col-12 col-md-4">
+    <div class="card-acao p-4">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div>
+          <div class="ticker-badge">{{ acao.ticker.replace('.SA','') }}</div>
+          <div class="nome-acao">{{ acao.nome }}</div>
+        </div>
+        <div class="text-end">
+          <div class="preco-atual">R$ {{ "%.2f"|format(acao.preco_atual) }}</div>
+          <div class="variacao {{ 'positivo' if acao.var_dia >= 0 else 'negativo' }}">
+            {{ "+" if acao.var_dia >= 0 else "" }}{{ "%.2f"|format(acao.var_dia) }}
+            ({{ "+" if acao.var_dia_pct >= 0 else "" }}{{ "%.2f"|format(acao.var_dia_pct) }}%)
+          </div>
+        </div>
+      </div>
+      <hr class="divider" />
+      <div class="row text-center">
+        <div class="col-4">
+          <div class="metric-label">No Ano</div>
+          <div class="metric-value {{ 'positivo' if acao.var_ano_pct >= 0 else 'negativo' }}">
+            {{ "+" if acao.var_ano_pct >= 0 else "" }}{{ "%.2f"|format(acao.var_ano_pct) }}%
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="metric-label">Máxima</div>
+          <div class="metric-value">R$ {{ "%.2f"|format(acao.maxima) }}</div>
+        </div>
+        <div class="col-4">
+          <div class="metric-label">Mínima</div>
+          <div class="metric-value">R$ {{ "%.2f"|format(acao.minima) }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Gráfico de Cotações -->
+<div class="chart-card mb-4">
+  {{ chart_cotacoes | safe }}
+</div>
+
+<!-- Gráfico de Performance -->
+<div class="chart-card mb-4">
+  {{ chart_performance | safe }}
+</div>
+
+<!-- Gráfico de Volume -->
+<div class="chart-card mb-4">
+  {{ chart_volume | safe }}
+</div>
+
+{% endblock %}
