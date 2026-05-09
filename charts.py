@@ -13,9 +13,19 @@ CORES = {
 LAYOUT_BASE = dict(
     plot_bgcolor="#1e1e2e",
     paper_bgcolor="#1e1e2e",
-    font=dict(color="#cdd6f4", family="Inter, sans-serif"),
-    legend=dict(bgcolor="rgba(0,0,0,0)", bordercolor="rgba(255,255,255,0.1)", borderwidth=1),
-    margin=dict(l=50, r=20, t=50, b=50),
+    font=dict(color="#cdd6f4", family="Inter, sans-serif", size=12),
+    legend=dict(
+        bgcolor="rgba(0,0,0,0)",
+        bordercolor="rgba(255,255,255,0.1)",
+        borderwidth=1,
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="right",
+        x=1,
+    ),
+    margin=dict(l=40, r=10, t=60, b=40),
+    autosize=True,
     xaxis=dict(gridcolor="#313244", showgrid=True),
     yaxis=dict(gridcolor="#313244", showgrid=True),
 )
@@ -39,7 +49,7 @@ def grafico_cotacoes(dados: dict[str, pd.DataFrame]) -> str:
         yaxis_title="Preço (R$)",
         hovermode="x unified",
     )
-    return fig.to_html(full_html=False, include_plotlyjs=False)
+    return fig.to_html(full_html=False, include_plotlyjs=False, config={"responsive": True})
 
 
 def grafico_performance(dados: dict[str, pd.DataFrame]) -> str:
@@ -62,7 +72,7 @@ def grafico_performance(dados: dict[str, pd.DataFrame]) -> str:
         yaxis_title="Variação (%)",
         hovermode="x unified",
     )
-    return fig.to_html(full_html=False, include_plotlyjs=False)
+    return fig.to_html(full_html=False, include_plotlyjs=False, config={"responsive": True})
 
 
 def grafico_volume(dados: dict[str, pd.DataFrame]) -> str:
@@ -84,4 +94,4 @@ def grafico_volume(dados: dict[str, pd.DataFrame]) -> str:
         barmode="group",
         hovermode="x unified",
     )
-    return fig.to_html(full_html=False, include_plotlyjs=False)
+    return fig.to_html(full_html=False, include_plotlyjs=False, config={"responsive": True})
