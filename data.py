@@ -10,7 +10,7 @@ from curl_cffi import requests as curl_requests
 
 warnings.filterwarnings("ignore")
 
-CACHE_FILE = os.path.join(os.path.dirname(__file__), "cache", "dados.json")
+CACHE_FILE = "/tmp/dados.json" if os.environ.get("VERCEL") else os.path.join(os.path.dirname(__file__), "cache", "dados.json")
 CACHE_TTL = 3600  # 1 hora em segundos
 
 ACOES = {
@@ -29,7 +29,7 @@ def _cache_valido():
 
 
 def _salvar_cache(dados: dict):
-    os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
+    os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True) if os.path.dirname(CACHE_FILE) else None
     with open(CACHE_FILE, "w") as f:
         json.dump(dados, f)
 
