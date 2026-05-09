@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$d = 'C:\\Users\\Marcel\\Desktop\\Projetos Claude\\acoes-2025'; Set-Location $d; $s = git -c http.sslVerify=false status --porcelain; if ($s) { git -c http.sslVerify=false add -A; git -c http.sslVerify=false commit -m \"auto: update $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')\"; git -c http.sslVerify=false push origin master } 2>$null",
+            "statusMessage": "Sincronizando com GitHub..."
+          }
+        ]
+      }
+    ]
+  }
+}
